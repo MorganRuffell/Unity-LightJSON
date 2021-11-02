@@ -14,11 +14,22 @@ public class PostProcessVolumeScriptableObject : BaseScriptableObject, IScriptab
 
     public void FromExternal(JsonObject jsonData)
     {
-        throw new System.NotImplementedException();
+        isGlobal = jsonData["isGlobal"].AsBoolean;
+        priority = jsonData["priority"].AsFloat;
+        weight = jsonData["weight"].AsFloat;
+        blendDistance = jsonData["blendDistance"].AsFloat;
     }
 
     public JsonObject ToExternal()
     {
-        throw new System.NotImplementedException();
+        JsonObject ppVolumeDataJsonObject = new JsonObject
+        {
+            {"isGlobal",isGlobal},
+            {"priority",priority},
+            {"weight",weight},
+            {"blendDistance",blendDistance},
+        };
+
+        return ppVolumeDataJsonObject;
     }
 }

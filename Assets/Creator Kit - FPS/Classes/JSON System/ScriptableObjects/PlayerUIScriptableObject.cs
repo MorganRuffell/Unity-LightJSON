@@ -12,14 +12,25 @@ namespace ScriptableObjects
         public List<AudioClip> PositiveSounds;
         public List<AudioClip> NegativeSounds;
 
+        [SerializeField] private int indexOfPositiveSoundsToPlay = 0;
+        [SerializeField] private int indexOfNegativeSoundsToPlay = 0;
+
+
         public void FromExternal(JsonObject jsonData)
         {
-            throw new System.NotImplementedException();
+            indexOfPositiveSoundsToPlay = jsonData["indexOfPositiveSoundsToPlay"].AsInteger;
+            indexOfNegativeSoundsToPlay = jsonData["indexOfNegativeSoundsToPlay"].AsInteger;
         }
 
         public JsonObject ToExternal()
         {
-            throw new System.NotImplementedException();
+            JsonObject indexJsonObject = new JsonObject
+            {
+                {"indexOfPositiveSoundsToPlay", indexOfPositiveSoundsToPlay},
+                {"indexOfNegativeSoundsToPlay", indexOfNegativeSoundsToPlay},
+            };
+
+            return indexJsonObject;
         }
     }
 

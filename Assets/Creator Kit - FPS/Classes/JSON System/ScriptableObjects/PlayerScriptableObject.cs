@@ -37,12 +37,25 @@ namespace ScriptableObjects
 
         void IScriptableObject.FromExternal(JsonObject jsonData)
         {
-            throw new System.NotImplementedException();
+            MouseSensitivity = jsonData["MouseSensitivity"].AsFloat;
+            PlayerSpeed = jsonData["PlayerSpeed"].AsFloat;
+            RunningSpeed = jsonData["RunningSpeed"].AsFloat;
+            JumpSpeed = jsonData["JumpSpeed"].AsFloat;
+            IdNumber = jsonData["IdNumber"].AsInteger;
         }
 
         JsonObject IScriptableObject.ToExternal()
         {
-            throw new System.NotImplementedException();
+            JsonObject playerJsonObject = new JsonObject
+            {
+                {"MouseSensitivity",MouseSensitivity},
+                {"PlayerSpeed",PlayerSpeed},
+                {"RunningSpeed",RunningSpeed},
+                {"JumpSpeed",JumpSpeed},
+                {"IdNumber",IdNumber},
+            };
+
+            return playerJsonObject;
         }
 
         public int CompareTo(object obj)
